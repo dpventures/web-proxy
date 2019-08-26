@@ -15,9 +15,10 @@ app.get('/test', (req, res) => {
 
 app.post('/geturl', (req, res) => {
   const url = req.body.url;
+  if (url && !url.match(/^https?:\/\/(www\.)?instagram\.com.*/i)) return res.sendStatus(404);
   request(url, function (error, response, body) {
     if (error) return res.sendStatus(500);
     if (response && response.statusCode != 200) return res.sendStatus(response.statusCode);
-    res.send(body);
+    return res.send(body);
   });
 });
