@@ -16,7 +16,7 @@ app.get('/test', (req, res) => {
 app.post('/', (req, res) => {
   const url = req.body.url;
   const ip = req.headers['x-forwarded-for'] || req.connection.remoteAddress;
-  console.log(`requested url: ${url} by IP: ${ip}`);
+  console.log(`IP ${ip} requested url: ${url}`);
   if (url && !url.match(/^https?:\/\/(www\.)?instagram\.com.*/i)) return res.sendStatus(404);
   request(url, function (error, response, body) {
     if (error) return res.sendStatus(500);
