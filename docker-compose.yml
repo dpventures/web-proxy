@@ -1,0 +1,18 @@
+version: '3'
+
+services:
+  app:
+    build: .
+    image: web-proxy
+    container_name: proxy
+    command: node ./server.js
+    restart: always
+    ports:
+      - "5300:3000"
+    logging:
+      options:
+        max-size: "2M"
+        max-file: "10"
+    environment:
+      PORT: 3000
+      VIRTUAL_PORT: 5300
