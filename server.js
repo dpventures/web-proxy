@@ -13,7 +13,7 @@ app.get('/test', (req, res) => {
   res.send('api is working!');
 });
 
-app.post('/geturl', (req, res) => {
+app.post('/', (req, res) => {
   const url = req.body.url;
   if (url && !url.match(/^https?:\/\/(www\.)?instagram\.com.*/i)) return res.sendStatus(404);
   request(url, function (error, response, body) {
